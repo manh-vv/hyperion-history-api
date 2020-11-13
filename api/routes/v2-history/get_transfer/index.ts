@@ -43,17 +43,17 @@ export const getTransferResponseSchema = {
 
 export default function (fastify: FastifyInstance, opts: any, next) {
   const schema: RouteSchema = {
-    description: `Get transactions: smAccount, canAccount, symbol`,
+    description: `Get token transactions by: code AND? account AND? symbol`,
     summary: 'Get token transactions',
     tags: ['history'],
     querystring: extendQueryStringSchema({
-      smAccount: {
+      code: {
         description: 'CAN Account of token provider',
         type: 'string',
         minLength: 1,
         maxLength: 12,
       },
-      canAccount: {
+      account: {
         description: 'CAN Account of token owner',
         type: 'string',
         minLength: 1,

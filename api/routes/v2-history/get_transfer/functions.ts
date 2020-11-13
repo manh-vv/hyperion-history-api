@@ -170,34 +170,34 @@ export function getSortDir(query) {
 
 export function applyTokenFilters(query, queryStruct) {
   const must = queryStruct.bool.must;
-  if (query.smAccount) {
+  if (query.code) {
     must.push({
       term: {
-        'act.account': query.smAccount,
+        'act.account': query.code,
       },
     });
-    delete query.smAccount;
+    delete query.code;
   }
 
-  if (query.canAccount) {
+  if (query.account) {
     must.push({
       bool: {
         should: [
           {
             term: {
-              '@transfer.from': query.canAccount,
+              '@transfer.from': query.account,
             },
           },
           {
             term: {
-              '@transfer.to': query.canAccount,
+              '@transfer.to': query.account,
             },
           },
         ],
       },
     });
 
-    delete query.canAccount;
+    delete query.account;
   }
 
   if (query.symbol) {
